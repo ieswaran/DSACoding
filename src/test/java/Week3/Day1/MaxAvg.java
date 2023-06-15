@@ -1,3 +1,5 @@
+package Week3.Day1;
+
 import org.junit.Test;
 
 public class MaxAvg {

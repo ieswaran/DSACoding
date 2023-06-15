@@ -1,4 +1,4 @@
-package LeetCodeSolutions;
+package Week3.Day4.Day4;
 
 import org.junit.Test;
 

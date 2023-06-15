@@ -1,4 +1,4 @@
-package pairCoding;
+package Week3.Day2;
 
 import org.junit.Test;
 
@@ -30,12 +30,12 @@ public class minimumAbsoluteDifference {
          Time and Space Complexity
      */
 
- /*   @Test
+  @Test
     public void test() {
         int[] arr = {4, 2, 1, 3};
         System.out.println(minimumAbsDifference(arr));
     }
-*/
+
     @Test
     public void test2() {
         int[] arr = {-10,-11,12,24,34};
@@ -44,30 +44,22 @@ public class minimumAbsoluteDifference {
 
     public List<List<Integer>> minimumAbsDifference(int[] arr) {
         List<List<Integer>> ans = new ArrayList<>();
-
         int minDiff = Integer.MAX_VALUE;
-
         Arrays.sort(arr);
-        int i = 0, j = 1;
 
-        for (int k = arr.length - 1; k > 0; k--) {
-            if (arr[k] - arr[k - 1] < minDiff) {
-                minDiff = arr[k] - arr[k - 1];
+        for (int k = 0; k < arr.length-1; k++) {
+            if (arr[k + 1]-arr[k]< minDiff) {
+                minDiff = arr[k + 1]-arr[k];
             }
-        }
-        while (j < arr.length) {
-            if (minDiff == arr[j] - arr[i]) {
+            int Diff = arr[k + 1]-arr[k];
+            if (minDiff == Diff) {
                 List<Integer> pair = new ArrayList<>();
-                pair.add(arr[i]);
-                pair.add(arr[j]);
+                pair.add(arr[k]);
+                pair.add(arr[k+1]);
                 System.out.println(pair);
                 ans.add(pair);
-
             }
-            i++;
-            j++;
         }
-
         return ans;
     }
 

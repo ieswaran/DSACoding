@@ -1,4 +1,4 @@
-package pairCoding;
+package Week2.Day4;
 
 import org.junit.Test;
 
