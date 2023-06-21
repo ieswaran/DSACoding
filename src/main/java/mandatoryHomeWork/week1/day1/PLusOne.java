@@ -1,8 +1,10 @@
 package mandatoryHomeWork.week1.day1;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 
-import org.junit.Test;
+
 
 public class PLusOne {
 
