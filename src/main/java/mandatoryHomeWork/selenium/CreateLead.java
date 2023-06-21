@@ -1,4 +1,4 @@
-package selenium;
+package mandatoryHomeWork.selenium;
 
 import java.time.Duration;
 
