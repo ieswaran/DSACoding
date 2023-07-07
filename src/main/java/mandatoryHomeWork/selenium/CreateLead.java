@@ -2,6 +2,7 @@ package mandatoryHomeWork.selenium;
 
 import java.time.Duration;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,17 +42,17 @@ public class CreateLead {
 		
 		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("tcs123");
 		
-		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("bhartahi");
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Bharath");
 		
-		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("manohar");
+		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("Saxena");
 		
-		driver.findElement(By.id("createLeadForm_firstNameLocal")).sendKeys("kb");
+		driver.findElement(By.id("createLeadForm_firstNameLocal")).sendKeys("BSP");
 		
 		driver.findElement(By.id("createLeadForm_departmentName")).sendKeys("engineering");
 		
 		driver.findElement(By.id("createLeadForm_description")).sendKeys("creating a new lead for reference");
 		
-		driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys("abcd@gmail.com");
+		driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys("bSaxena@gmail.com");
 		
 		WebElement drop=driver.findElement(By.name("generalStateProvinceGeoId"));
 		

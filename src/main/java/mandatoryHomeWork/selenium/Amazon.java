@@ -1,98 +1,73 @@
+
 package mandatoryHomeWork.selenium;
+
+import org.apache.commons.io.FileUtils;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-
-
 public class Amazon {
-
-	/*
-	 * 1.Load the URL https://www.amazon.in/ 2.search as oneplus 9 pro 3.Get the
-	 * price of the first product 4. Print the number of customer ratings for the
-	 * first displayed product 5. Click the first text link of the first image 6.
-	 * Take a screen shot of the product displayed 7. Click 'Add to Cart' button 8.
-	 * Get the cart subtotal and verify if it is correct. 9.close the browser
-	 */
-	public static void main(String[] args) throws IOException, InterruptedException {
-
-
-		ChromeOptions options = new ChromeOptions();
-
-		options.addArguments("--remote-allow-origins=*");
-
-		RemoteWebDriver driver = new ChromeDriver(options);
-
-		driver.manage().window().maximize();
-
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
+	@Test
+	public void test() throws InterruptedException, IOException {
+		ChromeDriver driver = new ChromeDriver();
 		driver.get("https://www.amazon.in/");
-
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("oneplus 9 pro");
-
-		driver.findElement(By.id("nav-search-submit-button")).click();
-
-		String price = driver.findElement(By.className("a-price-whole")).getText();
-
-		System.out.println(price);
-
-		String rating = driver.findElement(By.xpath("//span[contains(@class,'a-size-base s-underline-text')]"))
-				.getText();
-
-		System.out.println(rating);
-
-		driver.findElement(By.tagName("h2")).click();
-
-		Set<String> winSet = driver.getWindowHandles();
-
-		List<String> winList = new ArrayList<String>(winSet);
-
-		driver.switchTo().window(winList.get(1));
-
-		WebElement landingImg = driver.findElement(By.id("landingImage"));
-
-		landingImg.click();
-		Thread.sleep(2000);
-		WebElement img = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#ivStage div img")));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.findElement(By.xpath("(//div[text()='oneplus 9 pro'])[1]")).click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
-		File src = img.getScreenshotAs(OutputType.FILE);
-
-		File dest = new File("./snaps/landingimg.png");
-
-		FileUtils.copyFile(src, dest);
+		String price = driver.findElement(By.xpath("(//span[@class='a-price'])[1]")).getText();
+		/*
+		 * int price1 = Integer.parseInt(price); System.out.println("price : "+price1);
+		 */	
 		
-		driver.findElement(By.xpath("//button[@data-action='a-popover-close']")).click();
-		
-		driver.findElement(By.id("add-to-cart-button")).click();
-		//Thread.sleep(5000);
-		
-		//String subTotal=driver.findElement(By.id("attach-accessory-cart-subtotal")).getText();
-		WebElement subTotal = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("attach-accessory-cart-subtotal")));
-		String subT=subTotal.getText();
-		System.out.println(Integer.parseInt(subT.split("₹")[1]));
-		
-		
-		
-		System.out.println("---");
-
-		//driver.quit();
-
+		System.out.println("price : "+price);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		WebElement rating = driver.findElement(By.xpath("(//div[@class='a-row a-size-small'])[1]/span[2]"));
+		// String ratings = driver.findElement(By.xpath("(//div[@class='a-row
+		// a-size-small'])[1]/span[2]")).getText();
+		String ratings = rating.getText();
+		System.out.println(ratings);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.findElement(By.xpath("(//div[@class='a-row a-size-small'])[1]/span[2]/preceding::span[text()='(Renewed) OnePlus 9 Pro 5G (Pine Green, 12GB RAM, 256GB Storage)'][1]")).click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		String parentWindow = driver.getWindowHandle();
+		Set<String> handles = driver.getWindowHandles();
+		for (String windowHandle : handles) {
+			if (!windowHandle.equals(parentWindow)) {
+				driver.switchTo().window(windowHandle);
+				File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+				FileUtils.copyFile(scrFile, new File("./image.png"));
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+				driver.findElement(By.xpath("//input[@value='Add to Cart']")).click();
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+				String CartSubTotal = driver.findElement(By.xpath("(//b[text()='Cart subtotal']/following::span)[2]")).getText();
+				System.out.println("CartSubTotal : "+CartSubTotal);
+				//int cartsub = Integer.parseInt(CartSubTotal.replace(".00", ""));
+				//String cart =  String.valueOf(cartsub);
+				System.out.println("CartSubTotal : "+CartSubTotal);
+				String cartSubStr = CartSubTotal.substring(0, 7);
+				System.out.println(cartSubStr);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+				if(price.equals(cartSubStr)) {
+					System.out.println("Both Price and CartSub total of the product are equal. price: "+price + "Cart Subtotal :"+CartSubTotal);
+				}
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+				Assert.assertEquals(price, cartSubStr);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+				driver.quit();
+			}
+		}
 	}
-
 }
