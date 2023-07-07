@@ -1,0 +1,142 @@
+Situtation 1 :
+In the automated test it is found that more than 20% passed test are found to be false pass
+
+Probing questions :
+1. Is verification data is dynamic?
+2. Any data expiration window?
+3. Is sanity is done?
+
+Task :
+1. Conversely, False-Pass happens when there was a failure in the SUT(system under test) but it was not identified 
+   by the test automation so a pass result was reported. 
+2. This can be occur because the verification of the outcome was not done properly, 
+   an invalid assert value was used 
+3. Or the test case was expecting the wrong result.
+
+Action :
+1. Parallel Effort :
+When we add new test script for new scenario into automation test suite and for the first time 
+	we execute it with all test suite, 
+We should manually perform the test and compare it with the automation test result to check 
+	if our test script is working as expected. It called “parallel effort”.
+	
+2. Clarify the expected result/what need to be verified for the scenario
+When we get the test scenario from manual team, 
+We need to clarify with them to understand clearly what the test is about? can this test be automated ? 
+what function do the test target ? 
+What need to be checked/verified? 
+We need to assure you did assert all important verification points in the test script.
+
+3. If the verification data is dynamic, It changes following some logic, 
+You need to make sure the logic in the automation is correct, 
+make sure the expected outcome is correct at the moment and will correct in the feature.
+
+Result :
+No of false pass were indentified and it was erradicated 90 %
+
+Situtation 2:
+In the ui automation it is found that your login test are aggressively used how will you over comme this
+
+Probing questions :
+1. Are we already doing parallel and cross browser testing ?
+2. Is there same test case is tested with dfferent set of datas?
+3. Any alternative login is used for the application?
+
+Task :
+1. Identify the unique test case
+2. check if the same test case is tested with dfferent set of datas
+
+Action :
+1. Refine test scope: 
+Review your test suite and identify areas where test coverage can be improved. 
+Ensure that other critical functionalities and features are adequately tested alongside login functionality. 
+Expand the scope of your automation tests to include a broader range of scenarios.
+
+2. Identify key test scenarios: 
+Prioritize the login test scenarios based on their importance and impact on the application. 
+Identify the key login workflows that are essential to test thoroughly. 
+This way, you can focus on the most critical aspects of the login process while reducing redundancy.
+
+3. Implement modular and reusable test components: 
+Break down your login tests into smaller, modular components that can be reused across multiple tests. 
+By creating reusable login functions or methods, you can avoid duplicating login steps in every test case. 
+This approach promotes code reusability and reduces maintenance efforts
+
+4. Explore alternative login methods: 
+Consider alternative login methods, 
+such as single sign-on (SSO) or social media logins, that can be used in certain scenarios. 
+If applicable to your application, these alternative methods can be tested alongside traditional username/password logins, 
+reducing the reliance on repetitive login tests.
+
+5. Introduce session management: 
+Implement session management techniques to optimize the login process. 
+Instead of performing a complete login for each test, establish a login session at the beginning of the test suite 
+or when required and reuse it across multiple tests. This approach reduces the overhead of repetitive login operations.
+
+6. Data-driven testing: 
+Employ data-driven testing techniques to test various login scenarios without repeating the same test cases. 
+By leveraging different sets of test data, you can simulate diverse login scenarios, including valid and invalid credentials, 
+different user roles, and edge cases.
+
+7. Implement modular and reusable test components:
+Break down your login tests into smaller, modular components that can be reused across multiple tests. 
+By creating reusable login functions or methods, you can avoid duplicating login steps in every test case. 
+This approach promotes code reusability and reduces maintenance efforts.
+
+Result :
+By following these steps, you can address the aggressive usage of login tests in UI automation 
+while maintaining a comprehensive test coverage for your application
+
+Situation 3 :
+you are working on a new product which is expected to be relased next friday and you found a critical bug on wednesday
+and your developer is unwilling to fix stating ther is no enought time, however your leadership team wants this release to be
+as CEO is releasing the product. How as QAE to resolve this ?
+
+Probing question :
+1. is all the functionality we need to provide in the product at once?
+2. Do we have any agreeded list of fucntionality to be provided during the first launch?
+
+Task :
+1. Communicate the risk
+2. to remove the affected E2E flow from the product (Stating under progress)
+3. increse the dev people voulume as required to fix the bug by thursday noon
+
+Action :
+1. Assess the impact: 
+Evaluate the critical bug's impact on the product and its functionality. 
+Determine the severity and potential risks associated with releasing the product with the bug. If the bug poses a significant risk to the user experience, data integrity, or security, it is crucial to address it before the release.
+
+2. Communicate the risk: 
+Clearly communicate the risks associated with releasing the product with the critical bug to the leadership team, 
+including the CEO. Emphasize the potential negative impact on customer satisfaction, reputation, and business outcomes. Provide factual evidence and real-life examples to support your case.
+
+3. Provide alternative solutions: 
+If fixing the bug is not feasible within the given timeframe, propose alternative solutions to mitigate the risk. 
+This could include implementing temporary workarounds, providing clear instructions to users on how to avoid the bug, or disabling the affected functionality temporarily until a fix can be implemented.
+
+4. Document the bug: 
+Thoroughly document the critical bug, including steps to reproduce, expected behavior, and any relevant logs or error messages. Share this documentation with the development team, along with your analysis of the bug's impact. This will ensure that the bug is properly understood and can be addressed in future releases if not resolved immediately.
+
+5. Seek a compromise:
+Engage in discussions with the developer and the leadership team to find a compromise that balances the 
+need for a timely release with the importance of maintaining product quality. 
+Explore options such as extending the release date, allocating additional resources, or adjusting the release plan to accommodate a fix for the critical bug.
+
+6. Involve higher management: 
+If necessary, escalate the situation to higher management, such as the project manager or the CTO. 
+Seek their guidance and support in resolving the issue. Highlight the potential consequences of releasing the product with the critical bug and request their intervention in finding a suitable resolution.
+
+7. Consider a phased rollout: 
+If the critical bug cannot be fixed in time for the initial release, consider a phased rollout approach. 
+Release the product to a limited set of users or a specific geographic region, where the impact of the bug is expected to be minimal or manageable. This way, you can gather feedback, monitor the bug's impact, and plan for a subsequent release with the fix.
+
+8. Perform thorough testing: 
+Despite the presence of the critical bug, ensure that rigorous testing is conducted 
+on the rest of the product to identify any additional issues. 
+Maintain transparency by documenting known issues and their impact on the release.
+
+Result :
+By doing all these , we can release the product on the given date.
+
+
+ 

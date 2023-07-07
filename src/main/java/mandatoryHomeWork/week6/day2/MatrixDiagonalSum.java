@@ -2,75 +2,42 @@ package mandatoryHomeWork.week6.day2;
 
 import org.junit.Test;
 
+
+
+/*pseudocode : O(n^2)
+ * 1. make a outer for loop to hold the matrix value
+ * 	use inner loop to move to the first row of the matrix (0,0) (0,1) (0,2) etc..
+ * 2. inside the inner loop 
+ * 	if(i==j || i+j < m.len-1)
+ * 		then take and add those value to sum
+ * and print the sum */
 public class MatrixDiagonalSum {
-
-	@Test
-	public void example1() {
-		int mat[][]= {{1,2,3},{4,5,6},{7,8,9}};
-		diagonalSumUsingOnePass(mat);
-	}
-
-	@Test
-	public void example2() {
-		int mat[][]= {{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1}};
-		diagonalSumUsingOnePass(mat);
-	}
-	
 	//@Test
-	public void example3() {
-		int mat[][]= {{1},{1},{1},{1}};
-		diagonalSumUsingOnePass(mat);
+	public void posCase() {
+		int mat[][] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+		System.out.println(matrixDia(mat));
 	}
-	
+	//@Test
+	public void negCase() {
+		int mat[][] = { { 0, 2, -3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+		System.out.println(matrixDia(mat));
+	}
 	@Test
-	public void example4() {
-		int mat[][]= {{5}};
-		diagonalSumUsingOnePass(mat);
+	public void edgeCase() {
+		int mat[][] = { { 1, 1, 1 ,1}, { 1, 1, 1 ,1},{ 1, 1, 1 ,1},{ 1, 1, 1 ,1} };
+		System.out.println(matrixDia(mat));
 	}
-	
-	/*
-	 * outer loop till the length of the mat
-	 * Inner loop till the length of mat[i]
-	 * If i==j or j==mat[i].length -i
-	 * add the values into sum variable and return it
-	 */
-	//Time Complexity --> O[n*m]
-	//Space Complexity --> O(1)
-	private void diagonalSum(int[][] mat) {
-		int sum=0;
-		for(int i=0;i<mat.length;i++) {
-			for(int j=0;j<mat[i].length;j++) {
-				if(i==j || j==mat[i].length-1-i) {
-					sum=sum+mat[i][j];
+
+	public int matrixDia(int mat[][]) {
+		int sum = 0;
+		
+		for (int i = 0; i < mat.length; i++) {
+			for (int j = 0; j < mat.length; j++) {
+				if (i == j || i + j == mat.length-1) {
+					sum += mat[i][j];
 				}
 			}
 		}
-		System.out.println(sum);
+		return sum;
 	}
-	
-	/*
-	 * To find the diagonal using single outer loop
-	 * val=mat[i][i];//to get primary diagonal
-	 * val=mat[i][length-i-1]; //to get sec diagonal
-	 * sum = sum+val;
-	 * once when u come out of the loop, check whether matrix lengt is odd or edd
-	 * if odd-> subtract the mat[len/2][len/2] from the overall sum value
-	 */
-	//Time Complexity --> O(n)
-	//Space Complexity --> O(1)
-	public void diagonalSumUsingOnePass(int[][] mat) {
-		int sum=0;
-		int val=0;
-		
-		for(int i=0;i<mat.length;i++) {
-			sum=sum+mat[i][i]+mat[i][mat.length-i-1];
-		}
-		val=mat.length/2;
-		if(mat.length%2!=0) {
-			sum=sum-mat[val][val];
-		}
-		System.out.println(sum);
-		
-	}
-	
 }
