@@ -1,5 +1,7 @@
 package mandatoryHomeWork.week4.day5;
 
+import org.junit.Test;
+
 public class Folder {
 	@Test
 	public void posCase() {

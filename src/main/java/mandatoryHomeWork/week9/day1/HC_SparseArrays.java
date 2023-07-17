@@ -1,5 +1,6 @@
 package mandatoryHomeWork.week9.day1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ public class HC_SparseArrays {
 	public static List<Integer> matchingStrings(List<String> stringList, List<String> queries) {
         
             HashMap<String,Integer> map=new HashMap<String,Integer>();
-            List<Integer> ls=new ArrayList<Integer>();
+            List<Integer> ls=new ArrayList<>();
             
             for(int i=0;i<stringList.size();i++){
                 map.put(stringList.get(i),map.getOrDefault(stringList.get(i), 0)+1);
